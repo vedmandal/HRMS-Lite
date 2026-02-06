@@ -1,52 +1,59 @@
 import { useState } from "react";
 import API from "../api/Api";
+import toast from "react-hot-toast";
 
-const AddEmployee = () => {
+const AddEmployee = ({ onEmployeeAdded }) => {
   const [data, setData] = useState({
-    employeeId: "",
-    fullName: "",
-    email: "",
-    department: ""
+    employeeId: "", fullName: "", email: "", department: ""
   });
+  const [loading, setLoading] = useState(false);
+
+  // Field configuration for cleaner JSX
+  const fields = [
+    { name: "employeeId", placeholder: "Employee ID", type: "text" },
+    { name: "fullName", placeholder: "Full Name", type: "text" },
+    { name: "email", placeholder: "Email Address", type: "email" },
+    { name: "department", placeholder: "Department", type: "text" },
+  ];
+
+  const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
 
   const submit = async (e) => {
     e.preventDefault();
-
-    const res = await API.post("/employee/add-employee", data);
-
-    alert(res.data.message);
-
-    if (res.data.success) {
-      setData({ employeeId: "", fullName: "", email: "", department: "" });
-      window.location.reload();
+    setLoading(true);
+    try {
+      const res = await API.post("/employee/add-employee", data);
+      if (res.data.success) {
+        toast.success(res.data.message);
+        setData({ employeeId: "", fullName: "", email: "", department: "" });
+        onEmployeeAdded(); 
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Error adding employee");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <form className="card" onSubmit={submit}>
-      <h2>Add Employee</h2>
+      <h2>Add New Employee</h2>
+      
+      {fields.map((f) => (
+        <input
+          key={f.name}
+          name={f.name}
+          type={f.type}
+          placeholder={f.placeholder}
+          value={data[f.name]}
+          onChange={handleChange}
+          required
+        />
+      ))}
 
-      <input placeholder="Employee ID"
-        value={data.employeeId}
-        onChange={(e) => setData({ ...data, employeeId: e.target.value })}
-        required />
-
-      <input placeholder="Full Name"
-        value={data.fullName}
-        onChange={(e) => setData({ ...data, fullName: e.target.value })}
-        required />
-
-      <input placeholder="Email"
-        value={data.email}
-        onChange={(e) => setData({ ...data, email: e.target.value })}
-        required />
-
-      <input placeholder="Department"
-        value={data.department}
-        onChange={(e) => setData({ ...data, department: e.target.value })}
-        required />
-
-      <button>Add</button>
+      <button disabled={loading}>
+        {loading ? "Processing..." : "Register Employee"}
+      </button>
     </form>
   );
 };

@@ -1,30 +1,166 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
+
+:root {
+  --primary: #5c21f3;
+  --primary-hover: #4a19c7;
+  --bg-light: #f5f3ff; 
+  --text-dark: #1e1b4b; 
+  --border: #ddd6fe; 
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
+body {
+  background-color: var(--bg-light);
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text-dark);
 }
+
 
 .card {
-  background: white;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 6px;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(92, 33, 243, 0.1);
+  max-width: 450px;
+  margin: 30px auto;
+  border: 1px solid var(--border);
 }
 
-input, select, button {
-  padding: 8px;
-  margin: 4px;
+.card h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-button {
+
+.card input {
+  width: 100%;
+  padding: 0.85rem;
+  margin-bottom: 1.2rem;
+  border: 2px solid #f1f0fb;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #fdfdff;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.card input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(92, 33, 243, 0.05);
+}
+
+
+.card button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
 }
 
-.inline {
-  margin-top: 8px;
+.card button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(92, 33, 243, 0.2);
+}
+
+.card button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+.section-title {
+  text-align: center;
+  color: var(--primary);
+  margin: 2rem 0;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #f1f0fb;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emp-info h3 {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+}
+
+.emp-info p {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.attendance-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+
+
+.attendance-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.attendance-actions input, 
+.attendance-actions select {
+  margin-bottom: 0;
+  flex: 1;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.btn-mark {
+  width: auto !important; 
+  padding: 0.6rem 1.5rem !important;
+  margin-top: 0 !important;
+  font-size: 0.9rem !important;
+  white-space: nowrap;
+}
+
+
+.btn-small {
+  width: auto !important; 
+  padding: 0.4rem 1rem !important;
+  font-size: 0.85rem !important;
+  margin: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.btn-danger {
+  background-color: #fee2e2 !important; 
+  color: #dc2626 !important;
+  border: 1px solid #fecaca !important;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626 !important;
+  color: white !important;
+  box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.2);
 }
