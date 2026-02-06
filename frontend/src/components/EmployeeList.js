@@ -33,6 +33,7 @@ const EmployeeList = () => {
 
   useEffect(() => {
     getAllEmployees();
+    // eslint-disable-next-line
   }, []);
 
   return (

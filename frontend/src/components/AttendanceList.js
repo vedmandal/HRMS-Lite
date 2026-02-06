@@ -31,8 +31,9 @@ const AttendanceList = ({ employeeId, refresh }) => {
     if (employeeId) {
       getAttendance();
     }
+    // eslint-disable-next-line
   }, [employeeId, refresh]);
-  
+
   useEffect(() => {
     getAttendance();
   }, [employeeId, refresh]);
