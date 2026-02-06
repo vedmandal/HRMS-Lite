@@ -36,6 +36,7 @@ const AttendanceList = ({ employeeId, refresh }) => {
 
   useEffect(() => {
     getAttendance();
+     // eslint-disable-next-line
   }, [employeeId, refresh]);
 
   if (loading) return <p>Loading attendance...</p>;
